@@ -13,7 +13,7 @@ public class MaxDepthOfTree {
 }
 
 class TreeNode{
-    int data;
+    int val;
     TreeNode left;
     TreeNode right;
 }
