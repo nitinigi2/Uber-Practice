@@ -10,9 +10,22 @@ public class InsertionDeletionInDoublyLinkedList {
 
         }
 
-        public Node(String data) {
+        public Node(String data, Node prev, Node next) {
             this.data = data;
-            this.next = this.prev = null;
+            this.next = prev;
+            this.next = next;
+        }
+
+        public String getData() {
+            return data;
+        }
+
+        public Node getNext() {
+            return next;
+        }
+
+        public Node getPrev() {
+            return prev;
         }
     }
 
@@ -20,7 +33,7 @@ public class InsertionDeletionInDoublyLinkedList {
 
     public void insert(Node root, String value, int index) {
         if (index < 0) return;
-        Node newNode = new Node(value);
+        Node newNode = new Node(value, null, null);
         // insertion at front
         if (index == 0) {
             newNode.next = root;
