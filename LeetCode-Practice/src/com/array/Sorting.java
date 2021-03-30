@@ -13,6 +13,20 @@ public class Sorting {
         printArray(arr, n);
     }
 
+    public static void insertionSort(int[] arr, int n) {
+        for (int i = 1; i < n; i++) {
+            int j = i;
+            int temp = arr[i];
+            while (j > 0 && arr[j - 1] > temp) {
+                arr[j] = arr[j - 1];
+                j--;
+            }
+            arr[j] = temp;
+        }
+        System.out.println("Insertion sort: ");
+        printArray(arr, n);
+    }
+
 
 
     private static void swap(int[] arr, int j, int i) {
@@ -32,6 +46,7 @@ public class Sorting {
         int[] arr = {2, -1, 10, 4, 66, 3};
         int n = arr.length;
         bubbleSort(arr, n);
+        insertionSort(arr, n);
     }
 }
 
