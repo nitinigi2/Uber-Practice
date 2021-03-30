@@ -90,7 +90,26 @@ public class Sorting {
         }
     }
 
+    public static void quickSort(int[] arr, int l, int r) {
+        if (l < r) {
+            int pivot = findPivot(arr, l, r);
+            quickSort(arr, l, pivot - 1);
+            quickSort(arr, pivot + 1, r);
+        }
+    }
 
+    private static int findPivot(int[] arr, int l, int r) {
+        int pivot = arr[r];
+        int j = 0;
+        for (int i = l; i < r; i++) {
+            if (arr[i] < pivot) {
+                swap(arr, j, i);
+                j++;
+            }
+        }
+        swap(arr, r, j);
+        return j;
+    }
 
     private static void swap(int[] arr, int j, int i) {
         int temp = arr[i];
@@ -113,6 +132,9 @@ public class Sorting {
         selectionSort(arr, n);
         System.out.println("Merge sort: ");
         mergeSort(arr, 0, n - 1);
+        printArray(arr, n);
+        System.out.println("Quick sort: ");
+        quickSort(arr, 0, n - 1);
         printArray(arr, n);
     }
 }
