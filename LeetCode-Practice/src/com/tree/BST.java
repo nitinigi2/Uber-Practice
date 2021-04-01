@@ -54,3 +54,20 @@ public class BST {
         }
     }
 }
+// https://leetcode.com/problems/convert-bst-to-greater-tree/
+class Solution {
+    int prev = 0;
+    public TreeNode convertBST(TreeNode root) {
+        reverseInorder(root);
+        return root;
+    }
+
+    public void reverseInorder(TreeNode root){
+        if(root == null) return;
+
+        convertBST(root.right);
+        root.val += prev;
+        prev = root.val;
+        convertBST(root.left);
+    }
+}
