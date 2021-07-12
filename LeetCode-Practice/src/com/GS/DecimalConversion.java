@@ -5,41 +5,45 @@ import java.util.Map;
 
 public class DecimalConversion {
     public static String fractionToDecimal(int numerator, int denominator) {
-        StringBuilder result = new StringBuilder();
+        StringBuilder str = new StringBuilder();
         String sign = "";
-        if(denominator <=0 && numerator <=0) {
+
+        if (numerator <= 0 && denominator < 0) {
             sign = "";
-        }else if(denominator<0 || numerator <0) {
+        } else if (denominator < 0 || numerator < 0) {
             sign = "-";
         }
 
-        int num = Math.abs(numerator);
-        int den = Math.abs(denominator);
-        result.append(sign);
-        result.append(num / den);
-        long rem = num % den;
-        if (rem == 0)
-            return result.toString();
-        result.append(".");
-        Map<Long, Integer> map = new HashMap();
-        while(rem != 0){
-            if(!map.containsKey(rem)){
-                map.put(rem, result.length());
-            }else {
-                int idx = map.get(rem);
-                return result.substring(0, idx)+"("+result.substring(idx)+")";
-            }
-            rem*= 10;
-            result.append(rem/den);
-            rem = rem%den;
+        int div = numerator / denominator;
+        int rem = numerator % denominator;
+        str.append(sign);
+        str.append(div);
+
+        if (rem == 0) {
+            return str.toString();
         }
-        System.out.println(map);
-        return result.toString();
+
+        str.append(".");
+        Map<Integer, Integer> map = new HashMap<>();
+        while (rem != 0) {
+            if(!map.containsKey(rem)) {
+                map.put(rem, str.length());
+            }else{
+                return str.substring(0, map.get(rem)) + "(" + str.substring(map.get(rem)) + ")";
+            }
+            rem = rem * 10;
+            str.append(rem/denominator);
+            rem = rem % denominator;
+        }
+        return str.toString();
     }
 
     public static void main(String[] args) {
-        int numerator = 2, denominator = 3;
+        int numerator = 1, denominator = 2;
 
         System.out.println(fractionToDecimal(numerator, denominator));
     }
 }
+
+//11/3 = 3.
+//11%3 = 2
