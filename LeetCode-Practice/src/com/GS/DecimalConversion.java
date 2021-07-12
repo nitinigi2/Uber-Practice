@@ -7,7 +7,7 @@ public class DecimalConversion {
     public static String fractionToDecimal(int numerator, int denominator) {
         StringBuilder result = new StringBuilder();
         String sign = "";
-        if(denominator <0 && numerator <0) {
+        if(denominator <=0 && numerator <=0) {
             sign = "";
         }else if(denominator<0 || numerator <0) {
             sign = "-";
