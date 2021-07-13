@@ -73,6 +73,29 @@ public class RunLengthEncoding {
         return prev.length();
     }
 
+    public int minimalSteps(String ingredients) {
+        int n = ingredients.length();
+        if(n==0) return 0;
+        StringBuilder sb = new StringBuilder();
+        sb.append(ingredients.charAt(0));
+        for(int i=1;i<n;i++) {
+            if(i*2 <= n) {
+                String str = ingredients.substring(0, i);
+                if(str.equals(ingredients.substring(i, 2*i))) {
+                    sb.append("*");
+                    i = 2*i-1;
+                }
+                else {
+                    sb.append(ingredients.charAt(i));
+                }
+            } else {
+                sb.append(ingredients.charAt(i));
+            }
+        }
+        System.out.println(sb.toString());
+        return sb.length();
+    }
+
     private static int pascal(int col, int row) {
         List<Integer> prev = new ArrayList<>();
         int count=0;
