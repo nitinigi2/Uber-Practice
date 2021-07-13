@@ -15,7 +15,7 @@ public class CountLengthOfCycle {
     }
 
     public static void main(String[] args) {
-        int[] arr = {0, 1, 1, 1};
+        int[] arr = {1, 2, 3, 0, 5};
         int startIndex = 0;
         System.out.println(countLengthOfCycle(arr, startIndex));
     }
