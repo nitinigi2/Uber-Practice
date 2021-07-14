@@ -11,11 +11,11 @@ public class CountLengthOfCycle {
             set.add(arr[startIndex]);
             startIndex = arr[startIndex];
         }
-        return set.size() == 1 ? -1 : set.size();
+        return !set.contains(arr[startIndex]) ? -1 : set.size();
     }
 
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 0, 5};
+        int[] arr = {1, 2, 0};
         int startIndex = 0;
         System.out.println(countLengthOfCycle(arr, startIndex));
     }
