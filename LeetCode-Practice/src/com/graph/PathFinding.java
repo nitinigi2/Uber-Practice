@@ -67,6 +67,11 @@ public class PathFinding {
                     dis[x][y] = dis[curr.x][curr.y] + 1;
                     queue.add(new Pair(x, y));
                 }
+
+                // if destination is reached then break it just after processing result for dest
+                if(x == destRow && y == destCol) {
+                    break;
+                }
             }
         }
 
