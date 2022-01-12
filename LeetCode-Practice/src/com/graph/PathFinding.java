@@ -15,6 +15,9 @@ public class PathFinding {
         }
     }
 
+    private static int[] R = {-1, 1, 0, 0};
+    private static int[] C = {0, 0, 1, -1};
+
     public static int minimumMovesToReachEnd(int[][] arr) {
         int srcRow = 0, srcCol = 0, destRow = 0, destCol = 0;
 
@@ -39,10 +42,8 @@ public class PathFinding {
         int n = arr.length;
         int m = arr[0].length;
 
-        int[] R = {-1, 1, 0, 0};
-        int[] C = {0, 0, 1, -1};
-
         Queue<Pair> queue = new LinkedList<>();
+        boolean[][] visited = new boolean[n][m];
         int[][] dis = new int[n][m];
 
         for (int i = 0; i < n; i++) {
@@ -55,6 +56,7 @@ public class PathFinding {
         }
 
         queue.add(new Pair(srcRow, srcCol));
+        visited[srcRow][srcCol] = true;
 
         while (!queue.isEmpty()) {
             Pair curr = queue.poll();
@@ -63,8 +65,9 @@ public class PathFinding {
                 int x = curr.x + R[i];
                 int y = curr.y + C[i];
 
-                if (isValid(x, y, n, m) && (dis[x][y] == -1 || dis[x][y] > dis[curr.x][curr.y] + 1) && arr[x][y] != 0) {
+                if (isValid(x, y, n, m) && arr[x][y] != 0 && !visited[x][y]) {
                     dis[x][y] = dis[curr.x][curr.y] + 1;
+                    visited[x][y] = true;
                     queue.add(new Pair(x, y));
                 }
 
