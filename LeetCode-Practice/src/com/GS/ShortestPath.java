@@ -68,7 +68,7 @@ public class ShortestPath {
                 int adj = graph.get(visitedNode).get(i);
                 if (!visited[adj]) {
                     visited[adj] = true;
-                    distance[adj] = distance[adj] + 1;
+                    distance[adj] = distance[visitedNode] + 1;
                     paths.put(adj, visitedNode);
                     queue.add(adj);
 
