@@ -28,6 +28,9 @@ public class LRUCache {
         if (cache.containsKey(key)) {
             DLinkNode node = cache.get(key);
             node.value = value;
+            // remove it from it's position and add it to the front
+            removeNode(node);
+            addNode(node);
             cache.put(key, node);
             return;
         }
