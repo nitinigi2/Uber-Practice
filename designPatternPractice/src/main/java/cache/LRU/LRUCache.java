@@ -32,8 +32,8 @@ public class LRUCache {
             return;
         }
         if (cache.size() == capacity) { // cache is full, remove last entry from cache.
-            removeNode(tail.pre);
-            cache.remove(tail.pre.key);
+            cache.remove(tail.pre.key); // remove it from from cache first
+            removeNode(tail.pre); // remove it from Dlink
         }
         DLinkNode newNode = new DLinkNode(key, value);
         addNode(newNode);
