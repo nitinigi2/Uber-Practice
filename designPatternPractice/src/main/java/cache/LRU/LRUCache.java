@@ -28,12 +28,15 @@ public class LRUCache {
         if (cache.containsKey(key)) {
             DLinkNode node = cache.get(key);
             node.value = value;
+            // remove it from it's position and add it to the front
+            removeNode(node);
+            addNode(node);
             cache.put(key, node);
             return;
         }
         if (cache.size() == capacity) { // cache is full, remove last entry from cache.
-            removeNode(tail.pre);
-            cache.remove(tail.pre.key);
+            cache.remove(tail.pre.key); // remove it from from cache first
+            removeNode(tail.pre); // remove it from Dlink
         }
         DLinkNode newNode = new DLinkNode(key, value);
         addNode(newNode);
